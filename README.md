@@ -1,1 +1,14 @@
-# Embedded-Systems
+# Embedded Systems
+
+## Data Structures
+### - Single Linked List
+
+## Linux System Programming
+### - Threads
+### - Semaphores
+### - Inter-Process Communication (IPC)
+### - Process Management
+### - Network Management
+
+## Embedded Projects
+### - RFID Integration
