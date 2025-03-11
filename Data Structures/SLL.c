@@ -16,6 +16,7 @@ void sort_data(Node *);
 void print_records(Node *);
 int count_records(Node *);
 void insert_pos(Node**, int);
+void deleteAllNodes(Node **hptr);
 
 int main(void){
     int option;
@@ -69,10 +70,56 @@ int main(void){
 void add_begin(Node **hptr){
     Node *new;
     new = malloc(sizeof(Node));
-    printf("Enter a number to add in the beginning\n");
     scanf("%d", &new->data);
     new->next = (*hptr);
     (*hptr) = new;
+}
+
+void deleteAllNodes(Node **hptr){
+    Node *ptr;
+    if(*hptr == 0){
+        printf("No records to delete\n");
+        return;
+    }
+    while(ptr){
+        ptr = *hptr;
+        *hptr = (*hptr)->next;
+        free(hptr);
+    }
+}
+void deleteSingleNode(Node **hptr) {
+    if (*hptr == NULL) {  
+        printf("List is empty.\n");
+        return;
+    }
+
+    Node *ptr = *hptr;
+    Node *prev = NULL;
+    int num = 0;
+
+    printf("Enter the number which you want to delete\n");
+    scanf("%d", &num);
+
+    if (ptr->data == num) {
+        *hptr = ptr->next;  // Update head pointer
+        free(ptr);
+        printf("Node with value %d deleted.\n", num);
+        return;
+    }
+
+    while (ptr != NULL && ptr->data != num) {
+        prev = ptr;
+        ptr = ptr->next;
+    }
+
+    if (ptr == NULL) {
+        printf("Node with value %d not found.\n", num);
+        return;
+    }
+
+    prev->next = ptr->next;
+    free(ptr);
+    printf("Node with value %d deleted.\n", num);
 }
 
 void print_records(Node *hptr){
@@ -101,6 +148,31 @@ void add_end(Node **hptr){
     }
     new->next = 0;
     curr->next = new;
+}
+void reverseData(Node *hptr){
+    Node *ptr1, *ptr2;
+    Node temp;
+
+    ptr1 = ptr2 = hptr;
+    if(hptr == NULL){
+        printf("Nothing to swap\n");
+
+    }
+
+    int c = count_records(hptr);
+    for(int i = 0; i < c/2; i++){
+        ptr1 = hptr;
+        for(int j = 0; j < c - i; j++){
+            ptr2 = ptr2->next;
+        }
+        int temp = ptr1->data;
+        ptr1->data = ptr2->data;
+        ptr2->data = temp;
+
+        ptr1 = ptr1->next;
+
+    }
+
 }
 //also called sorted entry of nodes
 void add_middle(Node **hptr){
