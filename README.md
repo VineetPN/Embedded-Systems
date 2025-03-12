@@ -2,6 +2,7 @@
 
 ## Data Structures
 ### - Single Linked List
+### - Double Linked List
 
 ## Linux System Programming
 ### - Threads
